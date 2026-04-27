@@ -25,5 +25,4 @@ void displayMenu() {
     cout << "5. Track Workouts over Time\n"; // File Graph Output
     cout << "6. Track Body_Weight Over Time\n"; // File Graph Output
     cout << "7. Maintenance Caloric Calculator\n";
-
 }
