@@ -8,24 +8,23 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include<vector>
+
 using namespace std;
 
 class Profile {
-    private:
-        double weight;
-        double height;
-        string lastUpdateDate;
+private:
+    double weight;
+    double height;
+    string lastUpdateDate;
 
-    public:
-        Profile(); // Constructor to initialize default values
+public:
+    Profile();
 
-        void updateMeasurements(const string& userID);
-        void displayMeasurements(const string& userID);
+    void updateMeasurements(const string& userID);
+    void displayMeasurements(const string& userID);
 
-        double getWeight();
-        double getHeight();
-
+    double getWeight();
+    double getHeight();
 };
 
 

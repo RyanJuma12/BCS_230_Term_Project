@@ -8,13 +8,14 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include<vector>
+#include <vector>
+
 using namespace std;
 
 // For the csv file storing user credentials it should follow these columns: userID,password,firstName,lastName,email,phone
 
 
-class Login{
+class Login {
     private:
         string currentUserID;
         string currentPassword;
@@ -35,7 +36,7 @@ class Login{
             const string& email,
             const string& phone
         );
-    
 };
+
 
 #endif //BCS_230_TERM_PROJECT_LOGIN_H

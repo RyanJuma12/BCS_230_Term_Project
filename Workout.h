@@ -8,24 +8,27 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include<vector>
+
 using namespace std;
 
-
 class Workout {
-    public:
-        void logWorkout();
-        void viewWorkoutLog();
-        
-        int getSets();
-        int getReps();
-        double getWeightLifted();
-    private:
-        int sets;
-        int reps;
-        double weightLifted;
-        string workoutDate;
-        string workoutName;
+private:
+    int sets;
+    int reps;
+    double weightLifted;
+    string workoutDate;
+    string workoutName;
+
+public:
+    Workout(); // Constructor to initialize default values
+
+    void logWorkout(const string& userID);
+    void viewWorkoutLog(const string& userID);
+
+    int getSets();
+    int getReps();
+    double getWeightLifted();
 };
+
 
 #endif //BCS_230_TERM_PROJECT_WORKOUT_H
