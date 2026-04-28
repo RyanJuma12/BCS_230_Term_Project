@@ -13,23 +13,27 @@ using namespace std;
 
 
 class Login{
+    private:
+        string currentUserID;
+        string currentPassword;
+
     public:
-        bool login(std::string& userID);
-        bool createAccount(std::string& userID);
+        bool login(string& userID);
+        bool createAccount(string& userID);
 
     private:
-        bool validateUser(const std::string& userID, const std::string& password);
-        bool userExists(const std::string& userID);
+        bool validateUser(const string& userID, const string& password);
+        bool userExists(const string& userID);
 
-    void addUserToFile(
-        const std::string& userID,
-        const std::string& password,
-        const std::string& firstName,
-        const std::string& lastName,
-        const std::string& email,
-        const std::string& phone
-    );
-
+        void addUserToFile(
+            const string& userID,
+            const string& password,
+            const string& firstName,
+            const string& lastName,
+            const string& email,
+            const string& phone
+        );
+    
 };
 
 #endif //BCS_230_TERM_PROJECT_LOGIN_H
