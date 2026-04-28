@@ -14,7 +14,7 @@ class Nutrition{
         void logCalories();
         void viewCalorieLog();
         int dailyCalorieIntake();
-    private:
+    
 
 }
 
