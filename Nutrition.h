@@ -16,6 +16,6 @@ class Nutrition{
         int dailyCalorieIntake();
     
 
-}
+};
 
 #endif //BCS_230_TERM_PROJECT_NUTRITION_H
