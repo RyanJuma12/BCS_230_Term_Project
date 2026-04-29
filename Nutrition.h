@@ -1,5 +1,5 @@
 //
-// Created by thoma on 4/27/2026.
+// Created by on 4/27/2026.
 //
 
 #ifndef BCS_230_TERM_PROJECT_NUTRITION_H
@@ -13,7 +13,10 @@ class Nutrition{
     public: 
         void logCalories();
         void viewCalorieLog();
-        int dailyCalorieIntake();
+        int getdailyCalorieIntake();
+    private:
+        int caloriesConsumed;
+        string logDate;
     
 
 };
