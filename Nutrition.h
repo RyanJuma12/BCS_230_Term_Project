@@ -11,6 +11,7 @@ using namespace std;
 
 class Nutrition{
     public: 
+        Nutrition();
         void logCalories();
         void viewCalorieLog();
         int getdailyCalorieIntake();
