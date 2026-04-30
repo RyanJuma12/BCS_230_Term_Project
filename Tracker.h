@@ -17,18 +17,19 @@ public:
     void displayBMICategory(int bmi);
 
     double calculateWeeklyWorkoutHours(const string& userID);
-    int calculateWeeklyWorkoutSets(const string& userID);
-    int calculateWeeklyWorkoutReps(const string& userID);
+    double calculateWeeklyWorkoutReps(const string& userID);
     double calculateWeeklyWeightLifted(const string& userID);
+    int calculateWeeklyWorkoutSets(const string& userID);
 
     double calculateWeightChange(double initialWeight, double finalWeight);
 
 private:
     double weeklyWorkoutHours;
-    int weeklyWorkoutSets;
-    int weeklyWorkoutReps;
+    double weeklyWorkoutReps;
     double weeklyWeightLifted;
     double weightChange;
+    int weeklyWorkoutSets;
+
 };
 
 

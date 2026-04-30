@@ -14,7 +14,6 @@ using namespace std;
 
 // For the csv file storing user credentials it should follow these columns: userID,password,firstName,lastName,email,phone
 
-
 class Login {
     private:
         string currentUserID;

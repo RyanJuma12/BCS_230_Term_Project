@@ -12,22 +12,21 @@
 using namespace std;
 
 class Workout {
-private:
-    int sets;
-    int reps;
-    double weightLifted;
-    string workoutDate;
-    string workoutName;
+    public:
+        Workout(); // Constructor to initialize default values
 
-public:
-    Workout(); // Constructor to initialize default values
+        void logWorkout(const string& userID);
+        void viewWorkoutLog(const string& userID);
 
-    void logWorkout(const string& userID);
-    void viewWorkoutLog(const string& userID);
-
-    int getSets();
-    int getReps();
-    double getWeightLifted();
+        int getSets();
+        int getReps();
+        double getWeightLifted();
+    private:
+        int sets;
+        int reps;
+        double weightLifted;
+        string workoutDate;
+        string workoutName;
 };
 
 

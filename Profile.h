@@ -12,19 +12,22 @@
 using namespace std;
 
 class Profile {
-private:
-    double weight;
-    double height;
-    string lastUpdateDate;
+    public:
+        Profile();
 
-public:
-    Profile();
+        void updateMeasurements(const string& userID);
+        void displayMeasurements(const string& userID);
 
-    void updateMeasurements(const string& userID);
-    void displayMeasurements(const string& userID);
-
-    double getWeight();
-    double getHeight();
+        double getWeight();
+        double getHeight();
+        int getAge();
+        string getGender();
+    private:
+        double weight;
+        double height;
+        int age;
+        string gender;
+        string lastUpdateDate;
 };
 
 
