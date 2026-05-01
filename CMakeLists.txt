@@ -9,4 +9,5 @@ add_executable(BCS_230_Term_Project main.cpp
         Workout.h
         Tracker.h
         FileManager.h
-        Login.h)
+        Login.h
+        Date.h)
