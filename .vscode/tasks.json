@@ -5,14 +5,21 @@
             "label": "C/C++: g++.exe build active file",
             "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            "-fdiagnostics-color=always",
+            "-g",
+            "main.cpp",
+            "Profile.cpp",
+            "Workout.cpp",
+            "Nutrition.cpp",
+            "Login.cpp",
+            "Tracker.cpp",
+            "FileManager.cpp",
+            "Date.cpp",
+            "-o",
+            "main.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
