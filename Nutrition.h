@@ -12,9 +12,9 @@ using namespace std;
 class Nutrition{
     public: 
         Nutrition();
-        void logCalories();
-        void viewCalorieLog();
-        int getdailyCalorieIntake();
+        void logCalories(string& userID);
+        void viewCalorieLog(string& userID);
+        int getdailyCalorieIntake(string& userID);
     private:
         int caloriesConsumed;
         string logDate;

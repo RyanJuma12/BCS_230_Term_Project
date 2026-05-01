@@ -1,5 +1,6 @@
 #include "Nutrition.h"
 #include <iostream>
+#include <fstream>
 #include <ctime>
 
 Nutrition::Nutrition() {
@@ -15,15 +16,15 @@ string getCurrentDate()
     return dt;
 }
 
-void logCalories()
+void logCalories(string& userID)
 {
 
 }
-void viewCalorieLog()
+void viewCalorieLog(string& userID)
 {
 
 }
-int Nutrition::getdailyCalorieIntake()
+int Nutrition::getdailyCalorieIntake(string& userID)
 {
     cout << "Enter the amount of calories you ate today" << endl;
     cin >> caloriesConsumed;
@@ -31,6 +32,8 @@ int Nutrition::getdailyCalorieIntake()
 
     ofstream outFile("nutrition.csv", ios::app);
     if (outFile.is_open()) {
-        outFile << userID <<
+        outFile << userID << "," << caloriesConsumed << "," << logDate << endl;
+        outFile.close();
+        cout << "Calorie log updated successfully!" << endl;
     }
 }

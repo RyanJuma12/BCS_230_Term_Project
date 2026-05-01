@@ -11,15 +11,11 @@ Profile::Profile() {
     lastUpdateDate = "";
 }
 
-string getCurrentDate() {
-    time_t now = time(0);
-    tm* ltm = localtime(&now);
-    
-    string date = to_string(1900 + ltm->tm_year) + "-" +
-                  to_string(1 + ltm->tm_mon) + "-" +
-                  to_string(ltm->tm_mday);
-
-    return date;
+string getCurrentDate()
+{
+    time_t now = time(0); //system time
+    char* dt = ctime(&now);
+    return dt;
 }
 
 void Profile::updateMeasurements(const string& userID) {
@@ -32,7 +28,7 @@ void Profile::updateMeasurements(const string& userID) {
 
     ofstream outFile("Profile.csv", ios::app);
     if (outFile.is_open()) {
-        outFile << userID << "," << age << "," << height << "," << weight << "," << "," << gender << lastUpdateDate << endl;
+        outFile << userID << "," << age << "," << height << "," << weight << "," << "," << gender << "," << lastUpdateDate << endl;
         outFile.close();
         cout << "Profile updated successfully!" << endl;
     } else {
