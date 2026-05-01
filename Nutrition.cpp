@@ -1,4 +1,5 @@
 #include "Nutrition.h"
+#include "Date.h"
 #include <iostream>
 #include <fstream>
 #include <ctime>
@@ -9,18 +10,12 @@ Nutrition::Nutrition() {
     
 }
 
-string getCurrentDate()
-{
-    time_t now = time(0); //system time
-    char* dt = ctime(&now);
-    return dt;
-}
 
-void logCalories(string& userID)
+void Nutrition::logCalories(string& userID)
 {
 
 }
-void viewCalorieLog(string& userID)
+void Nutrition::viewCalorieLog(string& userID)
 {
 
 }
@@ -36,4 +31,8 @@ int Nutrition::getdailyCalorieIntake(string& userID)
         outFile.close();
         cout << "Calorie log updated successfully!" << endl;
     }
+    else {
+        cerr << "Error opening file for writing." << endl;
+    }
+    return caloriesConsumed;
 }
