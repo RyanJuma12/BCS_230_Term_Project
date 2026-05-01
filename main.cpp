@@ -8,6 +8,7 @@
 #include "Workout.h"
 #include "Nutrition.h"
 #include "Tracker.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -48,7 +49,7 @@ int main() {
         }
     }
 
-    
+
     do {
         displayMenu();
         cin >> menuChoice;
