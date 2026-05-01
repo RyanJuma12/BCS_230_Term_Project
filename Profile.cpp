@@ -1,4 +1,5 @@
 #include "Profile.h"
+#include "Date.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -11,12 +12,7 @@ Profile::Profile() {
     lastUpdateDate = "";
 }
 
-string getCurrentDate()
-{
-    time_t now = time(0); //system time
-    char* dt = ctime(&now);
-    return dt;
-}
+
 
 void Profile::updateMeasurements(const string& userID) {
     cout << "Enter your weight (lbs): ";
@@ -61,3 +57,20 @@ inFile("Profile.csv");
         cerr << "Error opening file for reading." << endl;
     }
 }
+
+double Profile::getWeight() {
+    return weight;
+}
+
+double Profile::getHeight() {
+    return height;
+}
+
+int Profile::getAge() {
+    return age;
+}
+
+string Profile::getGender() {
+    return gender;
+}
+

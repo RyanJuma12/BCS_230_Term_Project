@@ -13,9 +13,7 @@ using namespace std;
 
 class Tracker {
 public:
-    int calculateBMI(double weight, double height);
-    void displayBMICategory(int bmi);
-
+    
     double calculateWeeklyWorkoutHours(const string& userID);
     double calculateWeeklyWorkoutReps(const string& userID);
     double calculateWeeklyWeightLifted(const string& userID);
