@@ -24,7 +24,7 @@ void Profile::updateMeasurements(const string& userID) {
 
     ofstream outFile("Profile.csv", ios::app);
     if (outFile.is_open()) {
-        outFile << userID << "," << age << "," << height << "," << weight << "," << "," << gender << "," << lastUpdateDate << endl;
+        outFile << userID << "," << age << "," << height << "," << weight << "," << gender << "," << lastUpdateDate << endl;
         outFile.close();
         cout << "Profile updated successfully!" << endl;
     } else {
