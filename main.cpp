@@ -34,15 +34,11 @@ int main() {
     int menuChoice;
 
     if (loginChoice == 1) {
-        cout << "Enter User ID: ";
-        cin >> userID;
         if (!login.login(userID)) {
             cout << "Login failed. Exiting...\n";
             return 0;
         }
     } else {
-        cout << "Enter New User ID: ";
-        cin >> userID;
         if (!login.createAccount(userID)) {
             cout << "Account creation failed. Exiting...\n";
             return 0;

@@ -6,24 +6,113 @@
 #include <ctime>
 using namespace std;
 
-bool Login::login(string& userID){
-    return true; // Placeholder return value
+bool Login::login(string& userID) {
+    string password;
+
+    cout << "Enter User ID: ";
+    cin >> userID;
+
+    cout << "Enter Password: ";
+    cin >> password;
+
+    if (validateUser(userID, password)) {
+        cout << "Login successful!\n";
+        return true;
+    }
+
+    cout << "Invalid userID or password.\n";
+    return false;
 }
 
-bool Login::createAccount(string& userID){
-    return true; // Placeholder return value
+bool Login::createAccount(string& userID) {
+    string password, firstName, lastName, email, phone;
+
+    cout << "Enter New User ID: ";
+    cin >> userID;
+
+    if (userExists(userID)) {
+        cout << "User already exists.\n";
+        return false;
+    }
+
+    cout << "Enter Password: ";
+    cin >> password;
+
+    cout << "Enter First Name: ";
+    cin >> firstName;
+
+    cout << "Enter Last Name: ";
+    cin >> lastName;
+
+    cout << "Enter Email: ";
+    cin >> email;
+
+    cout << "Enter Phone: ";
+    cin >> phone;
+
+    addUserToFile(userID, password, firstName, lastName, email, phone);
+
+    cout << "Account created successfully!\n";
+    return true;
 }
 
-bool Login::validateUser(const string& userID, const string& password){
-    return true; // Placeholder return value
+bool Login::validateUser(const string& userID, const string& password) {
+    ifstream file("Users.csv");
 
+    if (!file.is_open()) {
+        cout << "Error opening users file.\n";
+        return false;
+    }
+
+    string line;
+
+    while (getline(file, line)) {
+        size_t p1 = line.find(',');
+        size_t p2 = line.find(',', p1 + 1);
+
+        string storedID = line.substr(0, p1);
+        string storedPassword = line.substr(p1 + 1, p2 - p1 - 1);
+
+        if (storedID == userID && storedPassword == password) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
-bool Login::userExists(const string& userID){
-    return true; // Placeholder return value
+bool Login::userExists(const string& userID) {
+    ifstream file("Users.csv");
 
+    if (!file.is_open()) return false;
+
+    string line;
+
+    while (getline(file, line)) {
+        string storedID = line.substr(0, line.find(','));
+        if (storedID == userID) return true;
+    }
+
+    return false;
 }
 
-void Login::addUserToFile(const string& userID, const string& password, const string& firstName, const string& lastName, const string& email, const string& phone){
-// Implementation to add user details to a CSV file
+void Login::addUserToFile(
+    const string& userID,
+    const string& password,
+    const string& firstName,
+    const string& lastName,
+    const string& email,
+    const string& phone
+) {
+    ofstream outFile("Users.csv", ios::app);
+
+    if (outFile.is_open()) {
+        outFile << userID << "," << password << "," << firstName << "," << lastName << "," << email << "," << phone << endl;
+
+        outFile.close();
+        cout << "User account created successfully!" << endl;
+    } 
+    else {
+        cerr << "Error opening file for writing." << endl;
+    }
 }
