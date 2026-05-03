@@ -2,6 +2,10 @@
 
 string getCurrentDate() {
     time_t now = time(0);
-    char* dt = ctime(&now);
-    return dt;
+    tm* ltm = localtime(&now);
+
+    char buffer[20];
+    strftime(buffer, sizeof(buffer), "%m/%d/%Y", ltm);
+
+    return string(buffer);
 }
