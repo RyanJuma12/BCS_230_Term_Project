@@ -7,7 +7,7 @@
 using namespace std;
 
 bool Login::login(string& userID) {
-    string password;
+    string password; int attempts = 0;
 
     cout << "Enter User ID: ";
     cin >> userID;
@@ -20,12 +20,16 @@ bool Login::login(string& userID) {
         return true;
     }
 
-    cout << "Invalid userID or password.\n";
+    cout << "Invalid userID or password. Try again. Number of attempts left: " << 3 - attempts << "\n";
+        if (++attempts >= 3) {
+            cout << "Too many failed attempts. Exiting...\n";
+            return false;
+        }
     return false;
 }
 
 bool Login::createAccount(string& userID) {
-    string password, firstName, lastName, email, phone;
+    string password, firstName, lastName, email, phone, dateCreated, caloricGoal;
 
     cout << "Enter New User ID: ";
     cin >> userID;
@@ -50,7 +54,21 @@ bool Login::createAccount(string& userID) {
     cout << "Enter Phone: ";
     cin >> phone;
 
-    addUserToFile(userID, password, firstName, lastName, email, phone);
+    dateCreated = getCurrentDate();
+
+    cout << "Choose a Caloric Goal: \n"
+         << "1. Maintain\n"
+         << "2. Lose Weight\n"
+         << "3. Gain Muscle\n";
+
+    cin >> caloricGoal;
+
+    if (caloricGoal == "1") caloricGoal = "Maintain";
+    else if (caloricGoal == "2") caloricGoal = "Lose Weight";
+    else if (caloricGoal == "3") caloricGoal = "Gain Muscle";
+    else caloricGoal = "Maintain";
+
+    addUserToFile(userID, password, firstName, lastName, email, phone, dateCreated, caloricGoal);
 
     cout << "Account created successfully!\n";
     return true;
@@ -102,12 +120,14 @@ void Login::addUserToFile(
     const string& firstName,
     const string& lastName,
     const string& email,
-    const string& phone
+    const string& phone,
+    const string& dateCreated,
+    const string& caloricGoal
 ) {
     ofstream outFile("Users.csv", ios::app);
 
     if (outFile.is_open()) {
-        outFile << userID << "," << password << "," << firstName << "," << lastName << "," << email << "," << phone << endl;
+        outFile << userID << "," << password << "," << firstName << "," << lastName << "," << email << "," << phone << "," << dateCreated << "," << caloricGoal << endl;
 
         outFile.close();
         cout << "User account created successfully!" << endl;

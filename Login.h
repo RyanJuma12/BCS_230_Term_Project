@@ -33,7 +33,9 @@ class Login {
             const string& firstName,
             const string& lastName,
             const string& email,
-            const string& phone
+            const string& phone,
+            const string& dateCreated,
+            const string& caloricGoal
         );
 };
 
