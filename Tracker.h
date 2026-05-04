@@ -15,6 +15,7 @@ using namespace std;
 
 class Tracker {
 public:
+    Tracker();
     
     double calculateWeeklyWorkoutHours(const string& userID);
     double calculateWeeklyWorkoutReps(const string& userID);

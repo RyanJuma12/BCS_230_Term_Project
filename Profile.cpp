@@ -22,6 +22,7 @@ void Profile::updateMeasurements(const string& userID) {
     cout << "Enter your height (inches): ";
     cin >> height;
 
+    gender = getGender();
     lastUpdateDate = getCurrentDate();
 
     ofstream outFile("Profile.csv", ios::app);
