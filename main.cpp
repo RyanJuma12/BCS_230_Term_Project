@@ -52,6 +52,7 @@ int main() {
         switch (menuChoice) {
             case 1:
                 profile.updateMeasurements(userID);
+                tracker.calculateMaintenanceCalories(profile);
                 break;
             case 2:
                 profile.displayMeasurements(userID);
