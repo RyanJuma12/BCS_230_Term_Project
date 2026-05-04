@@ -15,6 +15,8 @@ Profile::Profile() {
 
 
 void Profile::updateMeasurements(const string& userID) {
+    cout << "Enter your age (years): ";
+    cin >> age;
     cout << "Enter your weight (lbs): ";
     cin >> weight;
     cout << "Enter your height (inches): ";

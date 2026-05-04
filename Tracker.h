@@ -8,6 +8,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
+#include "Profile.h"
 
 using namespace std;
 
@@ -20,6 +22,8 @@ public:
     int calculateWeeklyWorkoutSets(const string& userID);
 
     double calculateWeightChange(double initialWeight, double finalWeight);
+    double getMaintenanceCalories();
+    void calculateMaintenanceCalories(Profile& profile);
 
 private:
     double weeklyWorkoutHours;
@@ -27,6 +31,8 @@ private:
     double weeklyWeightLifted;
     double weightChange;
     int weeklyWorkoutSets;
+    string activityLevel;
+    double maintenanceCalories;
 
 };
 
