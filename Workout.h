@@ -16,6 +16,7 @@ class Workout {
         Workout(); // Constructor to initialize default values
 
         void logWorkout(const string& userID);
+        void getDailydailyWorkoutLog(const string& userID);
         void viewWorkoutLog(const string& userID);
 
         int getSets();
