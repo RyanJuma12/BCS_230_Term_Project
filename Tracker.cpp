@@ -42,15 +42,15 @@ double Tracker::calculateWeightChange(double initialWeight, double finalWeight) 
     return weightChange;
 }
 
-void Tracker::calculateMaintenanceCalories(Profile& profile) {
+void Tracker::calculateMaintenanceCalories(const string& userID) {
     cout << "Enter your activity level (sedentary, lightly active, moderately active, very active, extra active): ";
     cin.ignore(); // to handle newline
     getline(cin, activityLevel);
 
-    int age = profile.getAge();
-    string gender = profile.getGender();
-    double weight = profile.getWeight();
-    double height = profile.getHeight();
+    int age       = getAge(const string& userID);
+    string gender = getGender(const string& userID);
+    double weight = getWeight(const string& userID);
+    double height = getHeight(const string& userID);
 
     double weightKg = weight * 0.453592; // lbs to kg
     double heightCm = height * 2.54; // inches to cm
@@ -73,4 +73,20 @@ void Tracker::calculateMaintenanceCalories(Profile& profile) {
 
 double Tracker::getMaintenanceCalories() {
     return maintenanceCalories;
+}
+
+void Tracker::getAge(const string& userID) {
+    
+}
+
+void Tracker::getGender(const string& userID) {
+    // Implementation
+}
+
+void Tracker::getWeight(const string& userID) {
+    // Implementation
+}
+
+void Tracker::getHeight(const string& userID) {
+    // Implementation
 }

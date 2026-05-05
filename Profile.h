@@ -18,10 +18,10 @@ class Profile {
         void updateMeasurements(const string& userID);
         void displayMeasurements(const string& userID);
 
-        double getWeight();
-        double getHeight();
-        int getAge();
-        string getGender();
+        double getWeight(const string& userID);
+        double getHeight(const string& userID);
+        int getAge(const string& userID);
+        string getGender(const string& userID);
     private:
         double weight;
         double height;

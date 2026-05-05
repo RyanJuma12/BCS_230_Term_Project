@@ -41,7 +41,6 @@ void Workout::logWorkout(const string& userID) {
 }
 
 
-
 void Workout::viewWorkoutLog(const string& userID) {
     ifstream inFile("Workouts.csv");
     if (inFile.is_open()) {

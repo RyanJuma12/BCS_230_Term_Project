@@ -24,7 +24,12 @@ public:
 
     double calculateWeightChange(double initialWeight, double finalWeight);
     double getMaintenanceCalories();
-    void calculateMaintenanceCalories(Profile& profile);
+    void calculateMaintenanceCalories(const string& userID);
+
+    void getAge(const string& userID);
+    void getGender(const string& userID);
+    void getWeight(const string& userID);
+    void getHeight(const string& userID);
 
 private:
     double weeklyWorkoutHours;

@@ -22,7 +22,7 @@ void Profile::updateMeasurements(const string& userID) {
     cout << "Enter your height (inches): ";
     cin >> height;
 
-    gender = getGender();
+    gender = getGender(userID);
     lastUpdateDate = getCurrentDate();
 
     ofstream outFile("Profile.csv", ios::app);
@@ -61,19 +61,19 @@ inFile("Profile.csv");
     }
 }
 
-double Profile::getWeight() {
+double Profile::getWeight(const string& userID) {
     return weight;
 }
 
-double Profile::getHeight() {
+double Profile::getHeight(const string& userID) {
     return height;
 }
 
-int Profile::getAge() {
+int Profile::getAge(const string& userID) {
     return age;
 }
 
-string Profile::getGender() {
+string Profile::getGender(const string& userID) {
     return gender;
 }
 
