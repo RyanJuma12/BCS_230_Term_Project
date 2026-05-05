@@ -14,10 +14,11 @@ class Nutrition{
         Nutrition();
         void logCalories(string& userID);
         void viewCalorieLog(string& userID);
-        int getdailyCalorieIntake(string& userID);
+        int getDailyCalorieIntake(string& userID);
     private:
         int caloriesConsumed;
         string logDate;
+        string goal;
     
 
 };
