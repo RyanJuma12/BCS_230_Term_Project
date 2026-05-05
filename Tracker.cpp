@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
 #include <ctime>
 using namespace std;
 
@@ -17,25 +18,101 @@ Tracker::Tracker() {
     maintenanceCalories = 0.0;
 }
 
-double Tracker::calculateWeeklyWorkoutHours(const string& userID) {
-    // Implementation to calculate weekly workout hours based on workout logs
-    return 0.0; // Placeholder return value
-}
 
 double Tracker::calculateWeeklyWorkoutReps(const string& userID) {
-    // Implementation to calculate weekly workout reps based on workout logs
-    return 0.0; // Placeholder return value
-}
+    ifstream file("Workouts.csv");
+    string line;
 
-double Tracker::calculateWeeklyWeightLifted(const string& userID) {
-    // Implementation to calculate weekly weight lifted based on workout logs
-    return 0.0; // Placeholder return value
+    int total = 0;
+    int count = 0;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+
+        string id, name, sets, reps, weight, date;
+
+        getline(ss, id, ',');
+        getline(ss, name, ',');
+        getline(ss, sets, ',');
+        getline(ss, reps, ',');
+        getline(ss, weight, ',');
+        getline(ss, date, ',');
+
+        if (id == userID) {
+            total += stoi(reps);
+            count++;
+        }
+    }
+
+    if (count == 0) return 0;
+
+    weeklyWorkoutReps = (double)total / count;
+    return weeklyWorkoutReps;
 }
 
 int Tracker::calculateWeeklyWorkoutSets(const string& userID) {
-    // Implementation to calculate weekly workout sets based on workout logs
-    return 0; // Placeholder return value
+    ifstream file("Workouts.csv");
+    string line;
+
+    int total = 0;
+    int count = 0;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+
+        string id, name, sets, reps, weight, date;
+
+        getline(ss, id, ',');
+        getline(ss, name, ',');
+        getline(ss, sets, ',');
+        getline(ss, reps, ',');
+        getline(ss, weight, ',');
+        getline(ss, date, ',');
+
+        if (id == userID) {
+            total += stoi(sets);
+            count++;
+        }
+    }
+
+    if (count == 0) return 0;
+
+    weeklyWorkoutSets = total / count;
+    return weeklyWorkoutSets;
 }
+
+
+double Tracker::calculateWeeklyWeightLifted(const string& userID) {
+    ifstream file("Workouts.csv");
+    string line;
+
+    double total = 0;
+    int count = 0;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+
+        string id, name, sets, reps, weight, date;
+
+        getline(ss, id, ',');
+        getline(ss, name, ',');
+        getline(ss, sets, ',');
+        getline(ss, reps, ',');
+        getline(ss, weight, ',');
+        getline(ss, date, ',');
+
+        if (id == userID) {
+            total += stod(weight);
+            count++;
+        }
+    }
+
+    if (count == 0) return 0;
+
+    weeklyWeightLifted = total / count;
+    return weeklyWeightLifted;
+}
+
 
 double Tracker::calculateWeightChange(double initialWeight, double finalWeight) {
     weightChange = finalWeight - initialWeight;
@@ -43,9 +120,24 @@ double Tracker::calculateWeightChange(double initialWeight, double finalWeight) 
 }
 
 void Tracker::calculateMaintenanceCalories(const string& userID) {
-    cout << "Enter your activity level (sedentary, lightly active, moderately active, very active, extra active): ";
-    cin.ignore();
-    getline(cin, activityLevel);
+    cout << "Enter your activity level\n";
+    cout << "1. Sedentary (little or no exercise)\n";
+    cout << "2. Lightly active (light exercise/sports 1-3 days/week)\n";
+    cout << "3. Moderately active (moderate exercise/sports 3-5 days/week)\n";
+    cout << "4. Very active (hard exercise/sports 6-7 days a    week)\n";
+    cout << "5. Extra active (very hard exercise/sports & physical job or 2x training)\n";      
+
+    int choice;
+    cin >> choice;  
+    if (choice == 1) activityLevel = "sedentary";
+    else if (choice == 2) activityLevel = "lightly active";
+    else if (choice == 3) activityLevel = "moderately active";
+    else if (choice == 4) activityLevel = "very active";
+    else if (choice == 5) activityLevel = "extra active";
+    else {
+        cout << "Invalid choice. Defaulting to Sedentary.\n";
+        activityLevel = "sedentary";
+     }
 
     int age = profile.getAge(userID);
     string gender = profile.getGender(userID);
@@ -57,7 +149,7 @@ void Tracker::calculateMaintenanceCalories(const string& userID) {
 
     double bmr = 0.0;
 
-    if (gender == "M" || gender == "m") {
+    if (gender == "Male") {
         bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
     } else {
         bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
@@ -65,7 +157,8 @@ void Tracker::calculateMaintenanceCalories(const string& userID) {
 
     double factor = 1.2;
 
-    if (activityLevel == "lightly active") factor = 1.375;
+    if (activityLevel == "sedentary") factor = 1.2;
+    else if (activityLevel == "lightly active") factor = 1.375;
     else if (activityLevel == "moderately active") factor = 1.55;
     else if (activityLevel == "very active") factor = 1.725;
     else if (activityLevel == "extra active") factor = 1.9;
@@ -75,9 +168,7 @@ void Tracker::calculateMaintenanceCalories(const string& userID) {
     cout << "Your maintenance calories: " << maintenanceCalories << endl;
 }
 
+
 double Tracker::getMaintenanceCalories() {
     return maintenanceCalories;
 }
-
-
-

@@ -1,76 +1,66 @@
 #include "Workout.h"
 #include "Date.h"
+
 #include <iostream>
-#include <string>
 #include <fstream>
-#include <ctime>
+#include <sstream>
+
 using namespace std;
 
-Workout::Workout() {
-    sets = 0;
-    reps = 0;
-    weightLifted = 0.0;
-    workoutDate = "";
-    workoutName = "";
-}
+Workout::Workout() {}
 
 void Workout::logWorkout(const string& userID) {
-    cout << "Enter workout name: ";
-    cin >> workoutName;
+    string name, date;
+    int sets, reps;
+    double weight;
 
-    cout << "Enter Total number of sets: ";
+    cout << "Workout name: ";
+    cin >> name;
+
+    cout << "Sets: ";
     cin >> sets;
 
-    cout << "Enter Total number of reps: ";
+    cout << "Reps: ";
     cin >> reps;
 
-    cout << "Enter Total weight lifted (lbs): ";
-    cin >> weightLifted;
+    cout << "Weight lifted: ";
+    cin >> weight;
 
-    workoutDate = getCurrentDate();
+    date = getCurrentDate();
 
-    ofstream outFile("Workouts.csv", ios::app);
-    if (outFile.is_open()) {
-        outFile << userID << "," << workoutName << "," << sets << "," << reps << "," << weightLifted << "," << workoutDate << endl;
-        outFile.close();
-        cout << "Workout logged successfully!" << endl;
-    } else {
-        cerr << "Error opening file for writing." << endl;
-    }
+    ofstream file("Workouts.csv", ios::app);
 
+    file << userID << "," << name << "," << sets << "," << reps << "," << weight << "," << date << endl;
+
+    cout << "Workout logged.\n";
 }
 
+bool Workout::parseLine(const string& line, string& id, string& name, int& sets, int& reps, double& weight, string& date) {
+
+    stringstream ss(line);
+    string setsStr, repsStr, weightStr;
+
+    getline(ss, id, ',');
+    getline(ss, name, ',');
+    getline(ss, setsStr, ',');
+    getline(ss, repsStr, ',');
+    getline(ss, weightStr, ',');
+    getline(ss, date, ',');
+
+    sets = stoi(setsStr);
+    reps = stoi(repsStr);
+    weight = stod(weightStr);
+
+    return true;
+}
 
 void Workout::viewWorkoutLog(const string& userID) {
-    ifstream inFile("Workouts.csv");
-    if (inFile.is_open()) {
-        string line;
-        bool found = false;
-        cout << "Workout Log for User ID: " << userID << endl;
-        while (getline(inFile, line)) {
-            if (line.find(userID) == 0) {
-                found = true;
-                cout << line << endl; // You can format this output as needed
-            }
+    ifstream file("Workouts.csv");
+    string line;
+
+    while (getline(file, line)) {
+        if (line.find(userID) == 0) {
+            cout << line << endl;
         }
-        if (!found) {
-            cout << "No workouts found for User ID: " << userID << endl;
-        }
-        inFile.close();
-    } else {
-        cerr << "Error opening file for reading." << endl;
     }
 }
-
-int Workout::getSets(const string& userID) {
-    return sets;
-}
-
-int Workout::getReps(const string& userID) {
-    return reps;
-}
-
-double Workout::getWeightLifted(const string& userID) {
-    return weightLifted;
-}
-
