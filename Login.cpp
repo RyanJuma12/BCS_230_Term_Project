@@ -84,7 +84,7 @@ bool Login::createAccount(string& userID) {
 }
 
 bool Login::validateUser(const string& userID, const string& password) {
-    ifstream file("Users.csv");
+    ifstream file("data/Users.csv");
 
     if (!file.is_open()) {
         cout << "Error opening users file.\n";
@@ -109,7 +109,7 @@ bool Login::validateUser(const string& userID, const string& password) {
 }
 
 bool Login::userExists(const string& userID) {
-    ifstream file("Users.csv");
+    ifstream file("data/Users.csv");
 
     if (!file.is_open()) return false;
 
@@ -133,7 +133,7 @@ void Login::addUserToFile(
     const string& dateCreated,
     const string& caloricGoal
 ) {
-    ofstream outFile("Users.csv", ios::app);
+    ofstream outFile("data/Users.csv", ios::app);
 
     if (outFile.is_open()) {
         outFile << userID << "," << password << "," << firstName << "," << lastName << "," << email << "," << phone << "," << dateCreated << "," << caloricGoal << endl;

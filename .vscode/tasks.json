@@ -13,7 +13,6 @@
             "Nutrition.cpp",
             "Login.cpp",
             "Tracker.cpp",
-            "FileManager.cpp",
             "Date.cpp",
             "-o",
             "main.exe"

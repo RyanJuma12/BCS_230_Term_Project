@@ -28,7 +28,7 @@ void Workout::logWorkout(const string& userID) {
 
     date = getCurrentDate();
 
-    ofstream file("Workouts.csv", ios::app);
+    ofstream file("data/Workouts.csv", ios::app);
 
     file << userID << "," << name << "," << sets << "," << reps << "," << weight << "," << date << endl;
 
@@ -55,7 +55,7 @@ bool Workout::parseLine(const string& line, string& id, string& name, int& sets,
 }
 
 void Workout::viewWorkoutLog(const string& userID) {
-    ifstream file("Workouts.csv");
+    ifstream file("data/Workouts.csv");
     string line;
 
     cout << "\n--- Workout Log ---\n";

@@ -21,7 +21,7 @@ void Nutrition::logCalories(string& userID)
     logDate = getCurrentDate();
 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    
+
     cout << "Enter goal\n";
     cout << "1. Maintain\n"
          << "2. Lose Weight\n"
@@ -45,7 +45,7 @@ void Nutrition::logCalories(string& userID)
             goal = "Maintain";
     }
 
-    ofstream outFile("Nutrition.csv", ios::app);
+    ofstream outFile("data/Nutrition.csv", ios::app);
 
     if (outFile.is_open()) {
         outFile << userID << "," << caloriesConsumed << "," << goal << "," << logDate << endl;
@@ -60,7 +60,7 @@ void Nutrition::logCalories(string& userID)
 
 void Nutrition::viewCalorieLog(string& userID)
 {
-    ifstream inFile("Nutrition.csv");
+    ifstream inFile("data/Nutrition.csv");
 
     if (!inFile.is_open()) {
         cout << "No calorie log found.\n";

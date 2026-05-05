@@ -39,7 +39,7 @@ void Profile::updateMeasurements(const string& userID) {
 
     string date = getCurrentDate();
 
-    ofstream file("Profile.csv", ios::app);
+    ofstream file("data/Profile.csv", ios::app);
 
     if (file.is_open()) {
         file << userID << ","
@@ -57,7 +57,7 @@ void Profile::updateMeasurements(const string& userID) {
 
 bool Profile::loadProfile(const string& userID, int& age, double& height, double& weight, string& gender, string& date) {
 
-    ifstream file("Profile.csv");
+    ifstream file("data/Profile.csv");
     if (!file.is_open()) return false;
 
     string line;

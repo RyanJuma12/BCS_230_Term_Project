@@ -17,7 +17,7 @@ Tracker::Tracker() {
 
 
 double Tracker::calculateWeeklyWorkoutReps(const string& userID) {
-    ifstream file("Workouts.csv");
+    ifstream file("data/Workouts.csv");
     string line;
 
     int total = 0;
@@ -49,7 +49,7 @@ double Tracker::calculateWeeklyWorkoutReps(const string& userID) {
 
 
 double Tracker::calculateWeeklyWorkoutSets(const string& userID) {
-    ifstream file("Workouts.csv");
+    ifstream file("data/Workouts.csv");
     string line;
 
     int total = 0;
@@ -81,7 +81,7 @@ double Tracker::calculateWeeklyWorkoutSets(const string& userID) {
 
 
 double Tracker::calculateWeeklyWeightLifted(const string& userID) {
-    ifstream file("Workouts.csv");
+    ifstream file("data/Workouts.csv");
     string line;
 
     double total = 0;
