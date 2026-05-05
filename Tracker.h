@@ -26,12 +26,10 @@ public:
     double getMaintenanceCalories();
     void calculateMaintenanceCalories(const string& userID);
 
-    void getAge(const string& userID);
-    void getGender(const string& userID);
-    void getWeight(const string& userID);
-    void getHeight(const string& userID);
 
 private:
+    Profile profile;
+
     double weeklyWorkoutHours;
     double weeklyWorkoutReps;
     double weeklyWeightLifted;

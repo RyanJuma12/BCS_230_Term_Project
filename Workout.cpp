@@ -62,15 +62,15 @@ void Workout::viewWorkoutLog(const string& userID) {
     }
 }
 
-int Workout::getSets() {
+int Workout::getSets(const string& userID) {
     return sets;
 }
 
-int Workout::getReps() {
+int Workout::getReps(const string& userID) {
     return reps;
 }
 
-double Workout::getWeightLifted() {
+double Workout::getWeightLifted(const string& userID) {
     return weightLifted;
 }
 

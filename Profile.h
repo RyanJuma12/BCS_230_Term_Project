@@ -20,15 +20,13 @@ class Profile {
 
         double getWeight(const string& userID);
         double getHeight(const string& userID);
-        int getAge(const string& userID);
         string getGender(const string& userID);
+        int getAge(const string& userID);
+
     private:
-        double weight;
-        double height;
-        int age;
-        string gender;
-        string lastUpdateDate;
+        bool loadProfile(const string& userID, int& age, double& height, double& weight, string& gender, string& date);
 };
+
 
 
 

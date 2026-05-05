@@ -13,7 +13,7 @@ Tracker::Tracker() {
     weeklyWorkoutSets = 0;
     weeklyWeightLifted = 0.0;
     weightChange = 0.0;
-    activityLevel = "";
+    activityLevel = " ";
     maintenanceCalories = 0.0;
 }
 
@@ -44,49 +44,40 @@ double Tracker::calculateWeightChange(double initialWeight, double finalWeight) 
 
 void Tracker::calculateMaintenanceCalories(const string& userID) {
     cout << "Enter your activity level (sedentary, lightly active, moderately active, very active, extra active): ";
-    cin.ignore(); // to handle newline
+    cin.ignore();
     getline(cin, activityLevel);
 
-    int age       = getAge(const string& userID);
-    string gender = getGender(const string& userID);
-    double weight = getWeight(const string& userID);
-    double height = getHeight(const string& userID);
+    int age = profile.getAge(userID);
+    string gender = profile.getGender(userID);
+    double weight = profile.getWeight(userID);
+    double height = profile.getHeight(userID);
 
-    double weightKg = weight * 0.453592; // lbs to kg
-    double heightCm = height * 2.54; // inches to cm
+    double weightKg = weight * 0.453592;
+    double heightCm = height * 2.54;
+
     double bmr = 0.0;
+
     if (gender == "M" || gender == "m") {
         bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
-    } else if (gender == "F" || gender == "f") {
-        bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
     } else {
-        bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5; // default to male
+        bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
     }
-    double factor = 1.2; // sedentary
+
+    double factor = 1.2;
+
     if (activityLevel == "lightly active") factor = 1.375;
     else if (activityLevel == "moderately active") factor = 1.55;
     else if (activityLevel == "very active") factor = 1.725;
     else if (activityLevel == "extra active") factor = 1.9;
+
     maintenanceCalories = bmr * factor;
-    cout << "Your maintenance calories: " << maintenanceCalories << " calories/day" << endl;
+
+    cout << "Your maintenance calories: " << maintenanceCalories << endl;
 }
 
 double Tracker::getMaintenanceCalories() {
     return maintenanceCalories;
 }
 
-void Tracker::getAge(const string& userID) {
-    
-}
 
-void Tracker::getGender(const string& userID) {
-    // Implementation
-}
 
-void Tracker::getWeight(const string& userID) {
-    // Implementation
-}
-
-void Tracker::getHeight(const string& userID) {
-    // Implementation
-}

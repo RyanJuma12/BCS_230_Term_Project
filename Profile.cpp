@@ -1,79 +1,161 @@
 #include "Profile.h"
 #include "Date.h"
+
 #include <iostream>
-#include <string>
 #include <fstream>
-#include <ctime>
+#include <sstream>
+#include <limits>
+
 using namespace std;
 
 Profile::Profile() {
-    weight = 0.0;
-    height = 0.0;
-    lastUpdateDate = "";
+    int age = 0;
+    double height = 0.0;
+    double weight = 0.0;
+    string gender = " ";
+    string lastUpdateDate = " ";                    
 }
 
-
-
 void Profile::updateMeasurements(const string& userID) {
+    int age, choice;
+    double weight, height;
+    string gender;
+
     cout << "Enter your age (years): ";
     cin >> age;
+
     cout << "Enter your weight (lbs): ";
     cin >> weight;
+
     cout << "Enter your height (inches): ";
     cin >> height;
 
-    gender = getGender(userID);
-    lastUpdateDate = getCurrentDate();
-
-    ofstream outFile("Profile.csv", ios::app);
-    if (outFile.is_open()) {
-        outFile << userID << "," << age << "," << height << "," << weight << "," << gender << "," << lastUpdateDate << endl;
-        outFile.close();
-        cout << "Profile updated successfully!" << endl;
+    cout << "Enter your gender (1.M, 2.F): ";
+    cin >> choice;
+    if (choice == 1){
+        gender = "Male";
+    } else if (choice == 2){
+        gender = "Female";
     } else {
-        cerr << "Error opening file for writing." << endl;
+        cout << "Invalid choice. Defaulting to  Male.\n";
+        gender = "Male";
+    }
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    string date = getCurrentDate();
+
+    ofstream file("Profile.csv", ios::app);
+
+    if (file.is_open()) {
+        file << userID << ","
+             << age << ","
+             << height << ","
+             << weight << ","
+             << gender << ","
+             << date << endl;
+
+        cout << "Profile updated successfully!\n";
+    } else {
+        cerr << "Error opening Profile.csv\n";
     }
 }
 
-void Profile::displayMeasurements(const string& userID) {
-    ifstream 
-inFile("Profile.csv");
-    if (inFile.is_open()) {
-        string line;
-        bool found = false;
-        while (getline(inFile, line)) {
-            if (line.find(userID) == 0) {
-                found = true;
-                cout << "Profile for User ID: " << userID << endl;
-                cout << "Weight: " << weight << " lbs" << endl;
-                cout << "Height: " << height << " inches" << endl;
-                cout << "Age: " << age << endl;
-                cout << "Gender: " << gender << endl;
-                cout << "Last Updated: " << lastUpdateDate << endl;
-            }
+bool Profile::loadProfile(const string& userID, int& age, double& height, double& weight, string& gender, string& date) {
+
+    ifstream file("Profile.csv");
+    if (!file.is_open()) return false;
+
+    string line;
+    bool found = false;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+
+        string id, ageStr, heightStr, weightStr, genderStr, dateStr;
+
+        getline(ss, id, ',');
+
+        if (id == userID) {
+            getline(ss, ageStr, ',');
+            getline(ss, heightStr, ',');
+            getline(ss, weightStr, ',');
+            getline(ss, genderStr, ',');
+            getline(ss, dateStr, ',');
+
+            age = stoi(ageStr);
+            height = stod(heightStr);
+            weight = stod(weightStr);
+            gender = genderStr;
+            date = dateStr;
+
+            found = true; // keep going → get latest entry
         }
-        if (!found) {
-            cout << "Profile for User ID: " << userID << " not found." << endl;
-        }
-        inFile.close();
-    } else {
-        cerr << "Error opening file for reading." << endl;
     }
+
+    return found;
 }
+
 
 double Profile::getWeight(const string& userID) {
-    return weight;
+    int age;
+    double height, weight;
+    string gender, date;
+
+    if (loadProfile(userID, age, height, weight, gender, date))
+        return weight;
+
+    return 0.0;
 }
 
 double Profile::getHeight(const string& userID) {
-    return height;
+    int age;
+    double height, weight;
+    string gender, date;
+
+    if (loadProfile(userID, age, height, weight, gender, date))
+        return height;
+
+    return 0.0;
 }
 
 int Profile::getAge(const string& userID) {
-    return age;
+    int age;
+    double height, weight;
+    string gender, date;
+
+    if (loadProfile(userID, age, height, weight, gender, date))
+        return age;
+
+    return 0;
 }
 
 string Profile::getGender(const string& userID) {
-    return gender;
+    int age;
+    double height, weight;
+    string gender, date;
+
+    if (loadProfile(userID, age, height, weight, gender, date))
+        return gender;
+
+    return "";
 }
 
+
+void Profile::displayMeasurements(const string& userID) {
+    int age;
+    double height, weight;
+    string gender, date;
+
+    if (loadProfile(userID, age, height, weight, gender, date)) {
+        cout << "\n--- Profile ---\n";
+        cout << "User ID: " << userID << endl;
+        cout << "Age: " << age << endl;
+        cout << "Height: " << height << " in\n";
+        cout << "Weight: " << weight << " lbs\n";
+        cout << "Gender: " << gender << endl;
+        cout << "Last Updated: " << date << endl;
+    } else {
+        cout << "Profile not found.\n";
+    }
+}

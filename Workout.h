@@ -19,9 +19,9 @@ class Workout {
         void getDailydailyWorkoutLog(const string& userID);
         void viewWorkoutLog(const string& userID);
 
-        int getSets();
-        int getReps();
-        double getWeightLifted();
+        int getSets(const string& userID);
+        int getReps(const string& userID);
+        double getWeightLifted(const string& userID);
     private:
         int sets;
         int reps;
