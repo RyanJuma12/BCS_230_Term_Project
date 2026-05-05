@@ -7,24 +7,33 @@
 using namespace std;
 
 bool Login::login(string& userID) {
-    string password; int attempts = 0;
+    string password;
+    int attempts = 0;
 
-    cout << "Enter User ID: ";
-    cin >> userID;
+    while (attempts < 3) {
+        cout << "Enter User ID: ";
+        cin >> userID;
 
-    cout << "Enter Password: ";
-    cin >> password;
+        cout << "Enter Password: ";
+        cin >> password;
 
-    if (validateUser(userID, password)) {
-        cout << "Login successful!\n";
-        return true;
+        if (validateUser(userID, password)) {
+            cout << "Login successful!\n";
+            return true;
+        }
+
+        attempts++;
+
+        cout << "Invalid credentials.\n";
+        cout << "Attempts remaining: " << (3 - attempts) << "\n";
     }
 
-    cout << "Invalid userID or password. Try again. Number of attempts left: " << 3 - attempts << "\n";
-        if (++attempts >= 3) {
-            cout << "Too many failed attempts. Exiting...\n";
-            return false;
-        }
+    cout << "Too many failed attempts. Exiting...\n";
+
+    cout << "Press ENTER to continue...";
+    cin.ignore();
+    cin.get();
+
     return false;
 }
 

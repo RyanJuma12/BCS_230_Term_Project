@@ -20,8 +20,8 @@ void Nutrition::logCalories(string& userID)
     caloriesConsumed = getDailyCalorieIntake(userID);
     logDate = getCurrentDate();
 
-    cin.ignore();
-
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
     cout << "Enter goal\n";
     cout << "1. Maintain\n"
          << "2. Lose Weight\n"

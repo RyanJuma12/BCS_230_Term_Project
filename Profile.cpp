@@ -8,13 +8,7 @@
 
 using namespace std;
 
-Profile::Profile() {
-    int age = 0;
-    double height = 0.0;
-    double weight = 0.0;
-    string gender = " ";
-    string lastUpdateDate = " ";                    
-}
+Profile::Profile() {}
 
 void Profile::updateMeasurements(const string& userID) {
     int age, choice;

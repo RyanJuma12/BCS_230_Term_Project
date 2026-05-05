@@ -58,9 +58,27 @@ void Workout::viewWorkoutLog(const string& userID) {
     ifstream file("Workouts.csv");
     string line;
 
+    cout << "\n--- Workout Log ---\n";
+
     while (getline(file, line)) {
         if (line.find(userID) == 0) {
-            cout << line << endl;
+
+            stringstream ss(line);
+
+            string id, name, sets, reps, weight, date;
+
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            getline(ss, sets, ',');
+            getline(ss, reps, ',');
+            getline(ss, weight, ',');
+            getline(ss, date, ',');
+
+            cout << "Workout: " << name
+                 << " | Sets: " << sets
+                 << " | Reps: " << reps
+                 << " | Weight: " << weight
+                 << " | Date: " << date << endl;
         }
     }
 }

@@ -18,33 +18,27 @@ class Tracker {
 public:
     Tracker();
 
-    double calculateWeeklyWorkoutHours(const string& userID);
     double calculateWeeklyWorkoutReps(const string& userID);
+    double calculateWeeklyWorkoutSets(const string& userID);
     double calculateWeeklyWeightLifted(const string& userID);
-    int calculateWeeklyWorkoutSets(const string& userID);
 
     double calculateWeightChange(double initialWeight, double finalWeight);
 
     void calculateMaintenanceCalories(const string& userID);
     double getMaintenanceCalories();
 
+    void showDashboard(const string& userID);
+
 private:
     Profile profile;
     Workout workout;
 
-    double weeklyWorkoutHours;
     double weeklyWorkoutReps;
+    double weeklyWorkoutSets;
     double weeklyWeightLifted;
-    double weightChange;
-    int weeklyWorkoutSets;
 
-    string activityLevel;
     double maintenanceCalories;
-
-    // helper for weekly filtering (used in cpp)
-    struct DateParts {
-        int m, d, y;
-    };
+    string activityLevel;
 };
 
-#endif //BCS_230_TERM_PROJECT_TRACKER_H 
+#endif //BCS_230_TERM_PROJECT_TRACKER_H
