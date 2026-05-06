@@ -7,7 +7,7 @@
             "args": [
             "-fdiagnostics-color=always",
             "-g",
-            "main.cpp",
+            "BodyBuddy.cpp",
             "Profile.cpp",
             "Workout.cpp",
             "Nutrition.cpp",
@@ -15,7 +15,7 @@
             "Tracker.cpp",
             "Date.cpp",
             "-o",
-            "main.exe"
+            "BodyBuddy.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
