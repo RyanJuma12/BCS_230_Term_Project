@@ -1,5 +1,6 @@
 #include "Nutrition.h"
 #include "Date.h"
+#include "ConsoleColors.h"
 
 #include <iostream>
 #include <fstream>
@@ -22,25 +23,31 @@ void Nutrition::logCalories(string& userID)
 
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+    setColor(CYAN);
     cout << "Enter goal\n";
     cout << "1. Maintain\n"
          << "2. Lose Weight\n"
          << "3. Gain Muscle\n";
 
     int goalChoice;
+    setColor(WHITE);
     cin >> goalChoice;
 
     switch (goalChoice) {
         case 1:
+            setColor(CYAN);
             goal = "Maintain";
             break;
         case 2:
+            setColor(CYAN);
             goal = "Lose Weight";
             break;
         case 3:
+            setColor(CYAN);
             goal = "Gain Muscle";
             break;
         default:
+            setColor(RED);
             cout << "Invalid choice. Defaulting to Maintain.\n";
             goal = "Maintain";
     }
@@ -50,10 +57,12 @@ void Nutrition::logCalories(string& userID)
     if (outFile.is_open()) {
         outFile << userID << "," << caloriesConsumed << "," << goal << "," << logDate << endl;
 
+        setColor(GREEN);
         cout << "Calorie log updated successfully!\n";
     }
     else {
-        cerr << "Error opening file.\n";
+        setColor(RED);
+        cerr << "Error opening file for writing.\n";
     }
 }
 
@@ -63,6 +72,7 @@ void Nutrition::viewCalorieLog(string& userID)
     ifstream inFile("data/Nutrition.csv");
 
     if (!inFile.is_open()) {
+        setColor(RED);
         cout << "No calorie log found.\n";
         return;
     }
@@ -70,6 +80,7 @@ void Nutrition::viewCalorieLog(string& userID)
     string line;
     bool found = false;
 
+    setColor(CYAN);
     cout << "Calorie Log for " << userID << ":\n";
 
     while (getline(inFile, line)) {
@@ -83,6 +94,7 @@ void Nutrition::viewCalorieLog(string& userID)
         getline(ss, date, ',');
 
         if (uid == userID) {
+            setColor(YELLOW);
             cout << "Date: " << date
                  << ", Calories: " << cal
                  << ", Goal: " << g << endl;
@@ -92,6 +104,7 @@ void Nutrition::viewCalorieLog(string& userID)
     }
 
     if (!found) {
+        setColor(RED);
         cout << "No entries found for this user.\n";
     }
 
@@ -99,15 +112,17 @@ void Nutrition::viewCalorieLog(string& userID)
 }
 
 
-int Nutrition::getDailyCalorieIntake(string& userID)
-{
+int Nutrition::getDailyCalorieIntake(string& userID){
+    setColor(CYAN);
     cout << "Enter calories consumed today: ";
+    setColor(WHITE);
     cin >> caloriesConsumed;
 
     while (cin.fail() || caloriesConsumed <= 0) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+        setColor(RED);
         cout << "Invalid input. Enter a positive number: ";
         cin >> caloriesConsumed;
     }

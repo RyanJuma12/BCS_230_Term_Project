@@ -1,5 +1,6 @@
 #include "Profile.h"
 #include "Date.h"
+#include "ConsoleColors.h"
 
 #include <iostream>
 #include <fstream>
@@ -15,22 +16,31 @@ void Profile::updateMeasurements(const string& userID) {
     double weight, height;
     string gender;
 
+    setColor(CYAN);
     cout << "Enter your age (years): ";
+    setColor(WHITE);
     cin >> age;
 
+    setColor(CYAN);
     cout << "Enter your weight (lbs): ";
+    setColor(WHITE);    
     cin >> weight;
 
+    setColor(CYAN);
     cout << "Enter your height (inches): ";
+    setColor(WHITE);
     cin >> height;
 
+    setColor(CYAN);
     cout << "Enter your gender (1.M, 2.F): ";
+    setColor(WHITE);
     cin >> choice;
     if (choice == 1){
         gender = "Male";
     } else if (choice == 2){
         gender = "Female";
     } else {
+        setColor(RED);
         cout << "Invalid choice. Defaulting to  Male.\n";
         gender = "Male";
     }
@@ -49,8 +59,10 @@ void Profile::updateMeasurements(const string& userID) {
              << gender << ","
              << date << endl;
 
+        setColor(GREEN);
         cout << "Profile updated successfully!\n";
     } else {
+        setColor(RED);
         cerr << "Error opening Profile.csv\n";
     }
 }
@@ -182,6 +194,7 @@ void Profile::displayMeasurements(const string& userID) {
     string gender, date;
 
     if (loadProfile(userID, age, height, weight, gender, date)) {
+        setColor(YELLOW);
         cout << "\n--- Profile ---\n";
         cout << "User ID: " << userID << endl;
         cout << "Age: " << age << endl;
@@ -190,6 +203,7 @@ void Profile::displayMeasurements(const string& userID) {
         cout << "Gender: " << gender << endl;
         cout << "Last Updated: " << date << endl;
     } else {
+        setColor(RED);
         cout << "Profile not found.\n";
     }
 }

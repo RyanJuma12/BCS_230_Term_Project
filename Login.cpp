@@ -1,5 +1,6 @@
 #include "Login.h"
 #include "Date.h"
+#include "ConsoleColors.h"
 
 #include <iostream>
 #include <string>
@@ -13,25 +14,35 @@ bool Login::login(string& userID) {
     int attempts = 0;
 
     while (attempts < 3) {
+        setColor(CYAN);
         cout << "Enter User ID: ";
+        setColor(WHITE);
         cin >> userID;
 
+        setColor(CYAN);
         cout << "Enter Password: ";
+        setColor(WHITE);
         cin >> password;
 
         if (validateUser(userID, password)) {
+            setColor(GREEN);
             cout << "Login successful!\n";
+            setColor(WHITE);
             return true;
         }
 
         attempts++;
-
+        setColor(RED);
         cout << "Invalid credentials.\n";
         cout << "Attempts remaining: " << (3 - attempts) << "\n";
+        setColor(WHITE);
     }
 
+    setColor(RED);
     cout << "Too many failed attempts. Exiting...\n";
+    setColor(WHITE);
 
+    setColor(CYAN);
     cout << "Press ENTER to continue...";
     cin.ignore();
     cin.get();
@@ -42,36 +53,50 @@ bool Login::login(string& userID) {
 bool Login::createAccount(string& userID) {
     string password, firstName, lastName, email, phone, dateCreated, caloricGoal;
 
+    setColor(CYAN); 
     cout << "Enter New User ID: ";
+    setColor(WHITE);
     cin >> userID;
 
     if (userExists(userID)) {
+        setColor(RED);
         cout << "User already exists.\n";
         return false;
     }
 
+    setColor(CYAN);
     cout << "Enter Password: ";
+    setColor(WHITE);
     cin >> password;
 
+    setColor(CYAN);
     cout << "Enter First Name: ";
+    setColor(WHITE);
     cin >> firstName;
 
+    setColor(CYAN);
     cout << "Enter Last Name: ";
+    setColor(WHITE);
     cin >> lastName;
 
+    setColor(CYAN);
     cout << "Enter Email: ";
+    setColor(WHITE);
     cin >> email;
 
+    setColor(CYAN);
     cout << "Enter Phone: ";
+    setColor(WHITE);
     cin >> phone;
 
     dateCreated = getCurrentDate();
 
+    setColor(CYAN);
     cout << "Choose a Caloric Goal: \n"
          << "1. Maintain\n"
          << "2. Lose Weight\n"
          << "3. Gain Muscle\n";
-
+    setColor(WHITE);
     cin >> caloricGoal;
 
     if (caloricGoal == "1") caloricGoal = "Maintain";
@@ -81,6 +106,7 @@ bool Login::createAccount(string& userID) {
 
     addUserToFile(userID, password, firstName, lastName, email, phone, dateCreated, caloricGoal);
 
+    setColor(GREEN);
     cout << "Account created successfully!\n";
     return true;
 }
@@ -89,6 +115,7 @@ bool Login::validateUser(const string& userID, const string& password) {
     ifstream file("data/Users.csv");
 
     if (!file.is_open()) {
+        setColor(RED);
         cout << "Error opening users file.\n";
         return false;
     }
@@ -141,9 +168,11 @@ void Login::addUserToFile(
         outFile << userID << "," << password << "," << firstName << "," << lastName << "," << email << "," << phone << "," << dateCreated << "," << caloricGoal << endl;
 
         outFile.close();
+        setColor(GREEN);
         cout << "User account created successfully!" << endl;
     } 
     else {
+        setColor(RED);
         cerr << "Error opening file for writing." << endl;
     }
 }

@@ -1,5 +1,6 @@
 #include "Workout.h"
 #include "Date.h"
+#include "ConsoleColors.h"  
 
 #include <iostream>
 #include <fstream>
@@ -14,16 +15,24 @@ void Workout::logWorkout(const string& userID) {
     int sets, reps;
     double weight;
 
+    setColor(CYAN);
     cout << "Workout name: ";
+    setColor(WHITE);
     cin >> name;
 
+    setColor(CYAN);
     cout << "Sets: ";
+    setColor(WHITE);
     cin >> sets;
 
+    setColor(CYAN);
     cout << "Reps: ";
+    setColor(WHITE);
     cin >> reps;
 
+    setColor(CYAN);
     cout << "Weight lifted: ";
+    setColor(WHITE);
     cin >> weight;
 
     date = getCurrentDate();
@@ -32,6 +41,7 @@ void Workout::logWorkout(const string& userID) {
 
     file << userID << "," << name << "," << sets << "," << reps << "," << weight << "," << date << endl;
 
+    setColor(GREEN);
     cout << "Workout logged.\n";
 }
 
@@ -58,6 +68,7 @@ void Workout::viewWorkoutLog(const string& userID) {
     ifstream file("data/Workouts.csv");
     string line;
 
+    setColor(YELLOW);
     cout << "\n--- Workout Log ---\n";
 
     while (getline(file, line)) {

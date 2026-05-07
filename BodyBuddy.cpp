@@ -16,6 +16,7 @@ Date Created: 4/27/2026
 #include "Nutrition.h"
 #include "Tracker.h"
 #include "Date.h"
+#include "ConsoleColors.h"
 
 using namespace std;
 
@@ -44,6 +45,7 @@ int main() {
 
     login.getUserName(userID, firstName, lastName);
 
+    setColor(GREEN);
     cout << "\nWelcome "
         << firstName
         << " "
@@ -89,11 +91,14 @@ int main() {
                 break;
 
             case 9:
+                setColor(GREEN);
                 cout << "Exiting program...\n";
                 break;
 
             default:
+                setColor(RED);
                 cout << "Invalid choice.\n";
+                setColor(WHITE);
         }
 
     } while (menuChoice != 9);
@@ -102,6 +107,7 @@ int main() {
 }
 
 void displayMenu() {
+    setColor(CYAN);
     cout << "\n==== FITNESS TRACKER MENU ====\n";
     cout << "1. Update Measurements\n";
     cout << "2. View Measurements\n";
@@ -112,19 +118,24 @@ void displayMenu() {
     cout << "7. Calculate Maintenance Calories\n";
     cout << "8. View Dashboard\n";
     cout << "9. Exit\n";
+    setColor(WHITE);
     cout << "Choice: ";
 }
 
 int getUserLogin() {
     int choice;
 
+    setColor(CYAN);
     cout << "1. Login\n";
     cout << "2. Create Account\n";
     cout << "Choice: ";
+    setColor(WHITE);
     cin >> choice;
 
     while(choice != 1 && choice != 2) {
+        setColor(RED);
         cout << "Invalid choice. Please enter 1 or 2: ";
+        setColor(WHITE);
         cin >> choice;
     }
 

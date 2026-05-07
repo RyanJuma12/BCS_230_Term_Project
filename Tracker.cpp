@@ -1,5 +1,6 @@
 #include "Tracker.h"
 #include "Date.h"
+#include "ConsoleColors.h"
 
 #include <iostream>
 #include <fstream>
@@ -128,9 +129,11 @@ void Tracker::calculateMaintenanceCalories(const string& userID) {
     double weight = profile.getWeight(userID);
     double height = profile.getHeight(userID);
 
+    setColor(CYAN);
     cout << "Choose activity level:\n";
     cout << "1. Sedentary\n2. Light\n3. Moderate\n4. Very Active\n5. Extra Active\n";
     int choice;
+    setColor(WHITE);
     cin >> choice;
 
     if (choice == 1) activityLevel = "sedentary";
@@ -158,6 +161,7 @@ void Tracker::calculateMaintenanceCalories(const string& userID) {
 
     maintenanceCalories = calculateMaintenanceCaloriesValue(userID);
 
+    setColor(YELLOW);
     cout << "Maintenance Calories: " << maintenanceCalories << endl;
 }
 
@@ -200,6 +204,7 @@ void Tracker::showDashboard(const string& userID, Login& login) {
 
     login.getUserName(userID, firstName, lastName);
 
+    setColor(YELLOW);
     cout << "\n===== FITNESS DASHBOARD =====\n";
 
     cout << "User: "
