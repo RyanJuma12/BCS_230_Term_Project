@@ -102,6 +102,46 @@ double Profile::getWeight(const string& userID) {
     return 0.0;
 }
 
+double Profile::getInitialWeight(const string& userID) {
+
+    ifstream file("data/Profile.csv");
+
+    if (!file.is_open()) {
+        return 0.0;
+    }
+
+    string line;
+
+    while (getline(file, line)) {
+
+        stringstream ss(line);
+
+        string id;
+        string ageStr;
+        string heightStr;
+        string weightStr;
+        string genderStr;
+        string dateStr;
+
+        getline(ss, id, ',');
+        getline(ss, ageStr, ',');
+        getline(ss, heightStr, ',');
+        getline(ss, weightStr, ',');
+        getline(ss, genderStr, ',');
+        getline(ss, dateStr, ',');
+
+        if (id == userID) {
+            return stod(weightStr);
+        }
+    }
+
+    return 0.0;
+}
+
+double Profile::getCurrentWeight(const string& userID) {
+    return getWeight(userID);
+}
+
 double Profile::getHeight(const string& userID) {
     int age;
     double height, weight;

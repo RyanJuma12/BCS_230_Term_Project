@@ -22,7 +22,7 @@ public:
     double calculateWeeklyWorkoutSets(const string& userID);
     double calculateWeeklyWeightLifted(const string& userID);
 
-    double calculateWeightChange(double initialWeight, double finalWeight);
+    double calculateWeightChange(const string& userID);
 
     void calculateMaintenanceCalories(const string& userID);
     double getMaintenanceCalories();

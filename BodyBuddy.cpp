@@ -1,17 +1,3 @@
-#include <iostream>
-#include <vector>
-#include<ctime>
-#include<cmath>
-
-#include "Login.h"
-#include "Profile.h"
-#include "Workout.h"
-#include "Nutrition.h"
-#include "Tracker.h"
-#include "Date.h"
-
-using namespace std;
-
 /*
 This is our term project for BCS_230
 It is a Fitness, Nutrition, Tracker designed to help people maintain shape
@@ -20,6 +6,9 @@ Date Created: 4/27/2026
 */
 
 #include <iostream>
+#include <vector>
+#include<ctime>
+#include<cmath>
 
 #include "Login.h"
 #include "Profile.h"

@@ -112,8 +112,12 @@ double Tracker::calculateWeeklyWeightLifted(const string& userID) {
 }
 
 
-double Tracker::calculateWeightChange(double initialWeight, double finalWeight) {
-    return finalWeight - initialWeight;
+double Tracker::calculateWeightChange(const string& userID) {
+
+    double initialWeight = profile.getInitialWeight(userID);
+    double currentWeight = profile.getCurrentWeight(userID);
+
+    return currentWeight - initialWeight;
 }
 
 
@@ -163,10 +167,15 @@ double Tracker::getMaintenanceCalories() {
 
 
 void Tracker::showDashboard(const string& userID) {
+
     cout << "\n===== FITNESS DASHBOARD =====\n";
 
     cout << "Maintenance Calories: "
          << maintenanceCalories << endl;
+
+    cout << "Weight Change: "
+         << calculateWeightChange(userID)
+         << " lbs" << endl;
 
     cout << "Avg Reps: "
          << calculateWeeklyWorkoutReps(userID) << endl;
