@@ -22,6 +22,7 @@ class Login {
     public:
         bool login(string& userID);
         bool createAccount(string& userID);
+        void getUserName(const string& userID, string& firstName, string& lastName);
 
     private:
         bool validateUser(const string& userID, const string& password);

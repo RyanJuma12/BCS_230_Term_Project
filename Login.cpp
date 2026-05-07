@@ -1,9 +1,11 @@
 #include "Login.h"
 #include "Date.h"
+
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <ctime>
+#include <sstream>
 using namespace std;
 
 bool Login::login(string& userID) {
@@ -143,5 +145,43 @@ void Login::addUserToFile(
     } 
     else {
         cerr << "Error opening file for writing." << endl;
+    }
+}
+
+void Login::getUserName(const string& userID,
+                        string& firstName,
+                        string& lastName) {
+
+    ifstream file("data/Users.csv");
+
+    if (!file.is_open()) {
+        return;
+    }
+
+    string line;
+
+    while (getline(file, line)) {
+
+        stringstream ss(line);
+
+        string id;
+        string password;
+        string email;
+        string phone;
+        string signupDate;
+        string caloricGoal;
+
+        getline(ss, id, ',');
+        getline(ss, password, ',');
+        getline(ss, firstName, ',');
+        getline(ss, lastName, ',');
+        getline(ss, email, ',');
+        getline(ss, phone, ',');
+        getline(ss, signupDate, ',');
+        getline(ss, caloricGoal, ',');
+
+        if (id == userID) {
+            return;
+        }
     }
 }

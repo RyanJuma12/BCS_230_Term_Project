@@ -9,8 +9,10 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+
 #include "Profile.h"
 #include "Workout.h"
+#include "Login.h"
 
 using namespace std;
 
@@ -25,9 +27,10 @@ public:
     double calculateWeightChange(const string& userID);
 
     void calculateMaintenanceCalories(const string& userID);
+    double calculateMaintenanceCaloriesValue(const string& userID);
     double getMaintenanceCalories();
 
-    void showDashboard(const string& userID);
+    void showDashboard(const string& userID, Login& login);
 
 private:
     Profile profile;

@@ -156,7 +156,7 @@ void Tracker::calculateMaintenanceCalories(const string& userID) {
     else if (activityLevel == "very") factor = 1.725;
     else if (activityLevel == "extra") factor = 1.9;
 
-    maintenanceCalories = bmr * factor;
+    maintenanceCalories = calculateMaintenanceCaloriesValue(userID);
 
     cout << "Maintenance Calories: " << maintenanceCalories << endl;
 }
@@ -165,25 +165,64 @@ double Tracker::getMaintenanceCalories() {
     return maintenanceCalories;
 }
 
+double Tracker::calculateMaintenanceCaloriesValue(const string& userID) {
 
-void Tracker::showDashboard(const string& userID) {
+    int age = profile.getAge(userID);
+    string gender = profile.getGender(userID);
+    double weight = profile.getWeight(userID);
+    double height = profile.getHeight(userID);
+
+    double weightKg = weight * 0.453592;
+    double heightCm = height * 2.54;
+
+    double bmr;
+
+    if (gender == "Male")
+        bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
+    else
+        bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
+
+    double factor = 1.2;
+
+    if (activityLevel == "light") factor = 1.375;
+    else if (activityLevel == "moderate") factor = 1.55;
+    else if (activityLevel == "very") factor = 1.725;
+    else if (activityLevel == "extra") factor = 1.9;
+
+    return bmr * factor;
+}
+
+
+void Tracker::showDashboard(const string& userID, Login& login) {
+
+    string firstName;
+    string lastName;
+
+    login.getUserName(userID, firstName, lastName);
 
     cout << "\n===== FITNESS DASHBOARD =====\n";
 
+    cout << "User: "
+         << firstName
+         << " "
+         << lastName
+         << endl;
+
     cout << "Maintenance Calories: "
-         << maintenanceCalories << endl;
+     << calculateMaintenanceCaloriesValue(userID)
+     << endl;
 
     cout << "Weight Change: "
          << calculateWeightChange(userID)
          << " lbs" << endl;
 
-    cout << "Avg Reps: "
+    cout << "Avg Reps per Week: "
          << calculateWeeklyWorkoutReps(userID) << endl;
 
-    cout << "Avg Sets: "
+    cout << "Avg Sets per Week: "
          << calculateWeeklyWorkoutSets(userID) << endl;
 
-    cout << "Avg Weight Lifted: "
+    cout << "Avg Weight Lifted per Week: "
          << calculateWeeklyWeightLifted(userID) << endl;
 
     cout << "=============================\n";

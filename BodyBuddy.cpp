@@ -30,6 +30,8 @@ int main() {
     Tracker tracker;
 
     string userID;
+    string firstName;
+    string lastName;
 
     int loginChoice = getUserLogin();
     int menuChoice;
@@ -39,6 +41,14 @@ int main() {
     } else {
         if (!login.createAccount(userID)) return 0;
     }
+
+    login.getUserName(userID, firstName, lastName);
+
+    cout << "\nWelcome "
+        << firstName
+        << " "
+        << lastName
+        << "!\n";
 
     do {
         displayMenu();
@@ -75,7 +85,7 @@ int main() {
                 break;
 
             case 8:
-                tracker.showDashboard(userID);
+                tracker.showDashboard(userID, login);
                 break;
 
             case 9:
