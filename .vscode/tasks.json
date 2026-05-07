@@ -7,6 +7,12 @@
             "args": [
             "-fdiagnostics-color=always",
             "-g",
+
+            "-static",
+            "-static-libgcc",
+            "-static-libstdc++",
+
+
             "BodyBuddy.cpp",
             "Profile.cpp",
             "Workout.cpp",
