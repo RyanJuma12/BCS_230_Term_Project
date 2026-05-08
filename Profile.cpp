@@ -191,12 +191,15 @@ string Profile::getGender(const string& userID) {
 void Profile::displayMeasurements(const string& userID) {
     int age;
     double height, weight;
-    string gender, date;
+    string gender, date, firstName, lastName;
+    Buddyz login;
+    login.getUserName(userID, firstName, lastName);
 
     if (loadProfile(userID, age, height, weight, gender, date)) {
         setColor(YELLOW);
         cout << "\n--- Profile ---\n";
         cout << "User ID: " << userID << endl;
+        cout << "Name: " << firstName << " " << lastName << endl;
         cout << "Age: " << age << endl;
         cout << "Height: " << height << " in\n";
         cout << "Weight: " << weight << " lbs\n";

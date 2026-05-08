@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include "Buddyz.h"
 using namespace std;
 
 class Nutrition{

@@ -23,6 +23,7 @@ bool Buddyz::login(string& userID) {
         cout << "Enter Password: ";
         setColor(WHITE);
         cin >> password;
+        cout << endl;
 
         if (validateUser(userID, password)) {
             setColor(GREEN);

@@ -69,6 +69,12 @@ void Nutrition::logCalories(string& userID)
 
 void Nutrition::viewCalorieLog(string& userID)
 {
+    string firstName;
+    string lastName;
+
+    Buddyz login;
+    login.getUserName(userID, firstName, lastName);
+
     ifstream inFile("data/Nutrition.csv");
 
     if (!inFile.is_open()) {
@@ -80,8 +86,8 @@ void Nutrition::viewCalorieLog(string& userID)
     string line;
     bool found = false;
 
-    setColor(CYAN);
-    cout << "Calorie Log for " << userID << ":\n";
+    setColor(YELLOW);
+    cout << "\nCalorie Log for User: " << firstName << " " << lastName << endl;
 
     while (getline(inFile, line)) {
         stringstream ss(line);

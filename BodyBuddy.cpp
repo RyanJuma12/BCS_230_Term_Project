@@ -131,12 +131,14 @@ int getUserLogin() {
     cout << "Choice: ";
     setColor(WHITE);
     cin >> choice;
+    cout << endl;
 
     while(choice != 1 && choice != 2) {
         setColor(RED);
         cout << "Invalid choice. Please enter 1 or 2: ";
         setColor(WHITE);
         cin >> choice;
+        cout << endl;
     }
 
     return choice;
