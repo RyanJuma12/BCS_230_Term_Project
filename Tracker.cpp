@@ -197,7 +197,7 @@ double Tracker::calculateMaintenanceCaloriesValue(const string& userID) {
 }
 
 
-void Tracker::showDashboard(const string& userID, Login& login) {
+void Tracker::showDashboard(const string& userID, Buddyz& login) {
 
     string firstName;
     string lastName;

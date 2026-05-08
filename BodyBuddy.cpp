@@ -10,7 +10,7 @@ Date Created: 4/27/2026
 #include<ctime>
 #include<cmath>
 
-#include "Login.h"
+#include "Buddyz.h"
 #include "Profile.h"
 #include "Workout.h"
 #include "Nutrition.h"
@@ -24,7 +24,7 @@ void displayMenu();
 int getUserLogin();
 
 int main() {
-    Login login;
+    Buddyz login;
     Profile profile;
     Workout workout;
     Nutrition nutrition;

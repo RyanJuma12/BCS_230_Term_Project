@@ -1,4 +1,4 @@
-#include "Login.h"
+#include "Buddyz.h"
 #include "Date.h"
 #include "ConsoleColors.h"
 
@@ -9,7 +9,7 @@
 #include <sstream>
 using namespace std;
 
-bool Login::login(string& userID) {
+bool Buddyz::login(string& userID) {
     string password;
     int attempts = 0;
 
@@ -50,7 +50,7 @@ bool Login::login(string& userID) {
     return false;
 }
 
-bool Login::createAccount(string& userID) {
+bool Buddyz::createAccount(string& userID) {
     string password, firstName, lastName, email, phone, dateCreated, caloricGoal;
 
     setColor(CYAN); 
@@ -111,7 +111,7 @@ bool Login::createAccount(string& userID) {
     return true;
 }
 
-bool Login::validateUser(const string& userID, const string& password) {
+bool Buddyz::validateUser(const string& userID, const string& password) {
     ifstream file("data/Users.csv");
 
     if (!file.is_open()) {
@@ -137,7 +137,7 @@ bool Login::validateUser(const string& userID, const string& password) {
     return false;
 }
 
-bool Login::userExists(const string& userID) {
+bool Buddyz::userExists(const string& userID) {
     ifstream file("data/Users.csv");
 
     if (!file.is_open()) return false;
@@ -152,7 +152,7 @@ bool Login::userExists(const string& userID) {
     return false;
 }
 
-void Login::addUserToFile(
+void Buddyz::addUserToFile(
     const string& userID,
     const string& password,
     const string& firstName,
@@ -177,7 +177,7 @@ void Login::addUserToFile(
     }
 }
 
-void Login::getUserName(const string& userID,
+void Buddyz::getUserName(const string& userID,
                         string& firstName,
                         string& lastName) {
 

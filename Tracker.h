@@ -12,7 +12,7 @@
 
 #include "Profile.h"
 #include "Workout.h"
-#include "Login.h"
+#include "Buddyz.h"
 
 using namespace std;
 
@@ -30,7 +30,7 @@ public:
     double calculateMaintenanceCaloriesValue(const string& userID);
     double getMaintenanceCalories();
 
-    void showDashboard(const string& userID, Login& login);
+    void showDashboard(const string& userID, Buddyz& login);
 
 private:
     Profile profile;
