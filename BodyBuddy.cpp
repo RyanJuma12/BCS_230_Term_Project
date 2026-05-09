@@ -125,21 +125,32 @@ void displayMenu() {
 int getUserLogin() {
     int choice;
 
-    setColor(CYAN);
-    cout << "1. Login\n";
-    cout << "2. Create Account\n";
-    cout << "Choice: ";
-    setColor(WHITE);
-    cin >> choice;
-    cout << endl;
-
-    while(choice != 1 && choice != 2) {
-        setColor(RED);
-        cout << "Invalid choice. Please enter 1 or 2: ";
+    while (true) {
+        setColor(CYAN);
+        cout << "1. Login\n";
+        cout << "2. Create Account\n";
+        cout << "Choice: ";
         setColor(WHITE);
-        cin >> choice;
-        cout << endl;
-    }
 
-    return choice;
+        cin >> choice;
+
+        // Check for invalid input type
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+
+            setColor(RED);
+            cout << "\nInvalid input. Please enter a number.\n\n";
+            continue;
+        }
+
+        // Check for valid menu options
+        if (choice == 1 || choice == 2) {
+            cout << endl;
+            return choice;
+        }
+
+        setColor(RED);
+        cout << "\nInvalid choice. Please enter 1 or 2.\n\n";
+    }
 }
