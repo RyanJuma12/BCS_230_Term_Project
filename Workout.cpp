@@ -92,4 +92,6 @@ void Workout::viewWorkoutLog(const string& userID) {
                  << " | Date: " << date << endl;
         }
     }
+
+    cout << "Great Job, and make sure to stay Consistant!" << endl;
 }

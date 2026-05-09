@@ -104,7 +104,7 @@ void Nutrition::viewCalorieLog(string& userID)
             cout << "Date: " << date
                  << ", Calories: " << cal
                  << ", Goal: " << g << endl;
-
+            
             found = true;
         }
     }
@@ -112,6 +112,11 @@ void Nutrition::viewCalorieLog(string& userID)
     if (!found) {
         setColor(RED);
         cout << "No entries found for this user.\n";
+    }
+
+    if (found) {
+        setColor(YELLOW);
+        cout << "Keep up the great work, and track your calories! :)" << endl;
     }
 
     inFile.close();

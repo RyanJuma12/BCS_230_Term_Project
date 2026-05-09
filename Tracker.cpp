@@ -230,5 +230,7 @@ void Tracker::showDashboard(const string& userID, Buddyz& login) {
     cout << "Avg Weight Lifted per Week: "
          << calculateWeeklyWeightLifted(userID) << endl;
 
+    cout << "Keep up the great work, " << firstName << "!\n";
+
     cout << "=============================\n";
 }
