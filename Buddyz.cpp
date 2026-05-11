@@ -83,12 +83,36 @@ bool Buddyz::createAccount(string& userID) {
     setColor(CYAN);
     cout << "Enter Email: ";
     setColor(WHITE);
+
+    while (true) {
     cin >> email;
+        if (email.find('@') == string::npos || email.find('.') == string::npos) {
+            setColor(RED);
+            cout << "Invalid email format Email must contain @ and .\n";
+            cout << "Reenter Email: ";
+            setColor(WHITE);
+        } else {
+            break;
+        }
+    }   
+
 
     setColor(CYAN);
-    cout << "Enter Phone: ";
+    cout << "Enter Phone Number (No Spaces or Hyphens): ";
     setColor(WHITE);
+    
+    while (true) {
     cin >> phone;
+        if (phone.length() != 10) {
+
+            setColor(RED);
+            cout << "Invalid phone number format.\n";
+            cout << "Reenter Phone Number: ";
+            setColor(WHITE);
+        }else {
+            break;
+        }
+    }
 
     dateCreated = getCurrentDate();
 
