@@ -131,8 +131,6 @@ bool Buddyz::createAccount(string& userID) {
 
     addUserToFile(userID, password, firstName, lastName, email, phone, dateCreated, caloricGoal);
 
-    setColor(GREEN);
-    cout << "Account created successfully!\n";
     return true;
 }
 
