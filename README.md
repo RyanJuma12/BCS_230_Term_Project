@@ -98,6 +98,7 @@ Make sure you have:
 
 - MSYS2 / MinGW installed
 - `g++` configured in PATH
+- NOTE: MUST EXTRACT FILES FOR PROGRAM TO WORK
 
 ### Compile using:
 
